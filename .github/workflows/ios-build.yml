@@ -1,0 +1,128 @@
+name: Build LocalPins IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      bundle_id:
+        description: Bundle identifier to use during CI build
+        required: false
+        default: com.localpins.app
+      team_id:
+        description: Apple Developer Team ID
+        required: false
+        default: ""
+      export_method:
+        description: Export method for IPA
+        required: false
+        default: development
+        type: choice
+        options:
+          - development
+          - ad-hoc
+          - app-store
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    env:
+      APP_NAME: LocalPins
+      SCHEME: LocalPins
+      PROJECT_PATH: LocalPins.xcodeproj
+      ARCHIVE_PATH: ${{ github.workspace }}/build/LocalPins.xcarchive
+      EXPORT_PATH: ${{ github.workspace }}/build/export
+      EXPORT_OPTIONS_PATH: ${{ github.workspace }}/build/ExportOptions.plist
+      BUNDLE_ID: ${{ inputs.bundle_id }}
+      TEAM_ID: ${{ inputs.team_id }}
+      EXPORT_METHOD: ${{ inputs.export_method }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Prepare directories
+        run: mkdir -p build
+
+      - name: Install signing assets
+        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          CERT_PATH="$RUNNER_TEMP/build_certificate.p12"
+          PROFILE_PATH="$RUNNER_TEMP/build.mobileprovision"
+          KEYCHAIN_PATH="$RUNNER_TEMP/build.keychain-db"
+
+          echo -n "$CERTIFICATE_BASE64" | base64 --decode -o "$CERT_PATH"
+          echo -n "$PROVISION_PROFILE_BASE64" | base64 --decode -o "$PROFILE_PATH"
+
+          security create-keychain -p "${KEYCHAIN_PASSWORD:-temp-password}" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "${KEYCHAIN_PASSWORD:-temp-password}" "$KEYCHAIN_PATH"
+          security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "${KEYCHAIN_PASSWORD:-temp-password}" "$KEYCHAIN_PATH"
+
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/LocalPins.mobileprovision"
+
+      - name: Generate export options
+        run: |
+          cp .github/exportOptions/ExportOptions.template.plist "$EXPORT_OPTIONS_PATH"
+          /usr/libexec/PlistBuddy -c "Set :method $EXPORT_METHOD" "$EXPORT_OPTIONS_PATH"
+
+          if [ -n "$TEAM_ID" ]; then
+            /usr/libexec/PlistBuddy -c "Set :teamID $TEAM_ID" "$EXPORT_OPTIONS_PATH"
+          fi
+
+          if [ -n "${{ secrets.PROVISIONING_PROFILE_NAME }}" ]; then
+            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles dict" "$EXPORT_OPTIONS_PATH" || true
+            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles:$BUNDLE_ID string ${{ secrets.PROVISIONING_PROFILE_NAME }}" "$EXPORT_OPTIONS_PATH" || \
+            /usr/libexec/PlistBuddy -c "Set :provisioningProfiles:$BUNDLE_ID ${{ secrets.PROVISIONING_PROFILE_NAME }}" "$EXPORT_OPTIONS_PATH"
+          fi
+
+          cat "$EXPORT_OPTIONS_PATH"
+
+      - name: Archive app
+        run: |
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination generic/platform=iOS \
+            -archivePath "$ARCHIVE_PATH" \
+            PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            clean archive
+
+      - name: Export IPA
+        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$ARCHIVE_PATH" \
+            -exportPath "$EXPORT_PATH" \
+            -exportOptionsPlist "$EXPORT_OPTIONS_PATH"
+
+      - name: Upload archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LocalPins-xcarchive
+          path: ${{ env.ARCHIVE_PATH }}
+          if-no-files-found: error
+
+      - name: Upload IPA artifact
+        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: LocalPins-ipa
+          path: ${{ env.EXPORT_PATH }}/*.ipa
+          if-no-files-found: error

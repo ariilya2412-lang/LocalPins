@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00A100000000000000000001 /* LocalPinsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000001 /* LocalPinsApp.swift */; };
+		00A100000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000002 /* ContentView.swift */; };
+		00A100000000000000000003 /* PhotoPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000003 /* PhotoPin.swift */; };
+		00A100000000000000000004 /* PinBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000004 /* PinBoard.swift */; };
+		00A100000000000000000005 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000005 /* ImageStorageService.swift */; };
+		00A100000000000000000006 /* PhotoLibraryImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000006 /* PhotoLibraryImporter.swift */; };
+		00A100000000000000000007 /* PinBoardOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000007 /* PinBoardOrganizer.swift */; };
+		00A100000000000000000008 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000008 /* HomeView.swift */; };
+		00A100000000000000000009 /* BoardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000009 /* BoardsView.swift */; };
+		00A10000000000000000000A /* BoardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000A /* BoardDetailView.swift */; };
+		00A10000000000000000000B /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000B /* PhotoDetailView.swift */; };
+		00A10000000000000000000C /* MasonryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000C /* MasonryGridView.swift */; };
+		00A10000000000000000000D /* PinCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000D /* PinCardView.swift */; };
+		00A10000000000000000000E /* StoredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000E /* StoredImageView.swift */; };
+		00A10000000000000000000F /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B10000000000000000000F /* CameraPicker.swift */; };
+		00A100000000000000000010 /* BoardPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000010 /* BoardPickerSheet.swift */; };
+		00A100000000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B100000000000000000011 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00B100000000000000000001 /* LocalPinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/LocalPinsApp.swift; sourceTree = "<group>"; };
+		00B100000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/ContentView.swift; sourceTree = "<group>"; };
+		00B100000000000000000003 /* PhotoPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/PhotoPin.swift; sourceTree = "<group>"; };
+		00B100000000000000000004 /* PinBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/PinBoard.swift; sourceTree = "<group>"; };
+		00B100000000000000000005 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ImageStorageService.swift; sourceTree = "<group>"; };
+		00B100000000000000000006 /* PhotoLibraryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PhotoLibraryImporter.swift; sourceTree = "<group>"; };
+		00B100000000000000000007 /* PinBoardOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PinBoardOrganizer.swift; sourceTree = "<group>"; };
+		00B100000000000000000008 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
+		00B100000000000000000009 /* BoardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BoardsView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000A /* BoardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BoardDetailView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000B /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PhotoDetailView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000C /* MasonryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/MasonryGridView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000D /* PinCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/PinCardView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000E /* StoredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/StoredImageView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000F /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/CameraPicker.swift; sourceTree = "<group>"; };
+		00B100000000000000000010 /* BoardPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/BoardPickerSheet.swift; sourceTree = "<group>"; };
+		00B100000000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		00B100000000000000000012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Resources/Info.plist; sourceTree = "<group>"; };
+		00B100000000000000000013 /* LocalPins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalPins.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A12B34C56D78E90F12345680 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A12B34C56D78E90F12345670 = {
+			isa = PBXGroup;
+			children = (
+				A12B34C56D78E90F12345671 /* LocalPins */,
+				A12B34C56D78E90F12345672 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345671 /* LocalPins */ = {
+			isa = PBXGroup;
+			children = (
+				A12B34C56D78E90F12345673 /* App */,
+				A12B34C56D78E90F12345674 /* Models */,
+				A12B34C56D78E90F12345675 /* Services */,
+				A12B34C56D78E90F12345676 /* Views */,
+				A12B34C56D78E90F12345677 /* Resources */,
+			);
+			path = LocalPins;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345672 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000013 /* LocalPins.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345673 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000001 /* LocalPinsApp.swift */,
+				00B100000000000000000002 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345674 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000003 /* PhotoPin.swift */,
+				00B100000000000000000004 /* PinBoard.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345675 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000005 /* ImageStorageService.swift */,
+				00B100000000000000000006 /* PhotoLibraryImporter.swift */,
+				00B100000000000000000007 /* PinBoardOrganizer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345676 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000008 /* HomeView.swift */,
+				00B100000000000000000009 /* BoardsView.swift */,
+				00B10000000000000000000A /* BoardDetailView.swift */,
+				00B10000000000000000000B /* PhotoDetailView.swift */,
+				A12B34C56D78E90F12345679 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345677 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00B100000000000000000011 /* Assets.xcassets */,
+				00B100000000000000000012 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A12B34C56D78E90F12345679 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				00B10000000000000000000C /* MasonryGridView.swift */,
+				00B10000000000000000000D /* PinCardView.swift */,
+				00B10000000000000000000E /* StoredImageView.swift */,
+				00B10000000000000000000F /* CameraPicker.swift */,
+				00B100000000000000000010 /* BoardPickerSheet.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A12B34C56D78E90F12345678 /* LocalPins */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A12B34C56D78E90F1234568C /* Build configuration list for PBXNativeTarget "LocalPins" */;
+			buildPhases = (
+				A12B34C56D78E90F1234567A /* Sources */,
+				A12B34C56D78E90F12345680 /* Frameworks */,
+				A12B34C56D78E90F1234567B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocalPins;
+			productName = LocalPins;
+			productReference = 00B100000000000000000013 /* LocalPins.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A12B34C56D78E90F12345669 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					A12B34C56D78E90F12345678 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = A12B34C56D78E90F1234568B /* Build configuration list for PBXProject "LocalPins" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A12B34C56D78E90F12345670;
+			productRefGroup = A12B34C56D78E90F12345672 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A12B34C56D78E90F12345678 /* LocalPins */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A12B34C56D78E90F1234567B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A100000000000000000011 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A12B34C56D78E90F1234567A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A100000000000000000001 /* LocalPinsApp.swift in Sources */,
+				00A100000000000000000002 /* ContentView.swift in Sources */,
+				00A100000000000000000003 /* PhotoPin.swift in Sources */,
+				00A100000000000000000004 /* PinBoard.swift in Sources */,
+				00A100000000000000000005 /* ImageStorageService.swift in Sources */,
+				00A100000000000000000006 /* PhotoLibraryImporter.swift in Sources */,
+				00A100000000000000000007 /* PinBoardOrganizer.swift in Sources */,
+				00A100000000000000000008 /* HomeView.swift in Sources */,
+				00A100000000000000000009 /* BoardsView.swift in Sources */,
+				00A10000000000000000000A /* BoardDetailView.swift in Sources */,
+				00A10000000000000000000B /* PhotoDetailView.swift in Sources */,
+				00A10000000000000000000C /* MasonryGridView.swift in Sources */,
+				00A10000000000000000000D /* PinCardView.swift in Sources */,
+				00A10000000000000000000E /* StoredImageView.swift in Sources */,
+				00A10000000000000000000F /* CameraPicker.swift in Sources */,
+				00A100000000000000000010 /* BoardPickerSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A12B34C56D78E90F1234568D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LocalPins/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.localpins.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A12B34C56D78E90F1234568E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LocalPins/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.localpins.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A12B34C56D78E90F1234568F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A12B34C56D78E90F12345690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A12B34C56D78E90F1234568B /* Build configuration list for PBXProject "LocalPins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A12B34C56D78E90F1234568F /* Debug */,
+				A12B34C56D78E90F12345690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A12B34C56D78E90F1234568C /* Build configuration list for PBXNativeTarget "LocalPins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A12B34C56D78E90F1234568D /* Debug */,
+				A12B34C56D78E90F1234568E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A12B34C56D78E90F12345669 /* Project object */;
+}
