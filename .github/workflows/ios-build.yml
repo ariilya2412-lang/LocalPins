@@ -94,6 +94,7 @@ jobs:
           cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/LocalPins.mobileprovision"
 
       - name: Generate export options
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           cp .github/exportOptions/ExportOptions.template.plist "$EXPORT_OPTIONS_PATH"
           /usr/libexec/PlistBuddy -c "Set :method $EXPORT_METHOD" "$EXPORT_OPTIONS_PATH"
@@ -110,7 +111,20 @@ jobs:
 
           cat "$EXPORT_OPTIONS_PATH"
 
+      - name: Build app for iOS Simulator
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
       - name: Archive app
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           xcodebuild \
             -project "$PROJECT_PATH" \
@@ -123,7 +137,7 @@ jobs:
             clean archive
 
       - name: Export IPA
-        if: ${{ steps.signing.outputs.ready == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && steps.signing.outputs.ready == 'true' }}
         run: |
           xcodebuild -exportArchive \
             -archivePath "$ARCHIVE_PATH" \
@@ -131,6 +145,7 @@ jobs:
             -exportOptionsPlist "$EXPORT_OPTIONS_PATH"
 
       - name: Upload archive artifact
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: LocalPins-xcarchive
@@ -138,7 +153,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload IPA artifact
-        if: ${{ steps.signing.outputs.ready == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && steps.signing.outputs.ready == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: LocalPins-ipa
