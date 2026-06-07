@@ -27,22 +27,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00B100000000000000000001 /* LocalPinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/LocalPinsApp.swift; sourceTree = "<group>"; };
-		00B100000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/ContentView.swift; sourceTree = "<group>"; };
-		00B100000000000000000003 /* PhotoPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/PhotoPin.swift; sourceTree = "<group>"; };
-		00B100000000000000000004 /* PinBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/PinBoard.swift; sourceTree = "<group>"; };
-		00B100000000000000000005 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ImageStorageService.swift; sourceTree = "<group>"; };
-		00B100000000000000000006 /* PhotoLibraryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PhotoLibraryImporter.swift; sourceTree = "<group>"; };
-		00B100000000000000000007 /* PinBoardOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PinBoardOrganizer.swift; sourceTree = "<group>"; };
-		00B100000000000000000008 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
-		00B100000000000000000009 /* BoardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BoardsView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000A /* BoardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/BoardDetailView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000B /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PhotoDetailView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000C /* MasonryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/MasonryGridView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000D /* PinCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/PinCardView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000E /* StoredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/StoredImageView.swift; sourceTree = "<group>"; };
-		00B10000000000000000000F /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/CameraPicker.swift; sourceTree = "<group>"; };
-		00B100000000000000000010 /* BoardPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/BoardPickerSheet.swift; sourceTree = "<group>"; };
+		00B100000000000000000001 /* LocalPinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPinsApp.swift; sourceTree = "<group>"; };
+		00B100000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00B100000000000000000003 /* PhotoPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPin.swift; sourceTree = "<group>"; };
+		00B100000000000000000004 /* PinBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinBoard.swift; sourceTree = "<group>"; };
+		00B100000000000000000005 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageService.swift; sourceTree = "<group>"; };
+		00B100000000000000000006 /* PhotoLibraryImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryImporter.swift; sourceTree = "<group>"; };
+		00B100000000000000000007 /* PinBoardOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinBoardOrganizer.swift; sourceTree = "<group>"; };
+		00B100000000000000000008 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		00B100000000000000000009 /* BoardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000A /* BoardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000B /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000C /* MasonryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasonryGridView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000D /* PinCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCardView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000E /* StoredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredImageView.swift; sourceTree = "<group>"; };
+		00B10000000000000000000F /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		00B100000000000000000010 /* BoardPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPickerSheet.swift; sourceTree = "<group>"; };
 		00B100000000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00B100000000000000000012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00B100000000000000000013 /* LocalPins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalPins.app; sourceTree = BUILT_PRODUCTS_DIR; };
