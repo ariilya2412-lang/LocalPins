@@ -158,7 +158,16 @@ struct HomeView: View {
     private func importPickerItems(_ items: [PhotosPickerItem]) {
         Task {
             do {
-                try await importer.importPickerItems(items, to: selectedBoardsForImport, in: modelContext)
+                var importedData: [Data] = []
+
+                for item in items {
+                    guard let data = try await item.loadTransferable(type: Data.self) else {
+                        throw ImageStorageError.invalidImageData
+                    }
+                    importedData.append(data)
+                }
+
+                try importer.importPickerData(importedData, to: selectedBoardsForImport, in: modelContext)
                 selectedItems = []
                 selectedBoardsForImport = []
                 pendingImportSource = nil

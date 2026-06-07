@@ -1,5 +1,4 @@
 import Foundation
-import PhotosUI
 import SwiftData
 import UIKit
 
@@ -11,16 +10,12 @@ final class PhotoLibraryImporter {
         self.storageService = storageService
     }
 
-    func importPickerItems(
-        _ items: [PhotosPickerItem],
+    func importPickerData(
+        _ items: [Data],
         to boards: [PinBoard],
         in modelContext: ModelContext
-    ) async throws {
-        for item in items {
-            guard let data = try await item.loadTransferable(type: Data.self) else {
-                throw ImageStorageError.invalidImageData
-            }
-
+    ) throws {
+        for data in items {
             try persistPin(from: data, to: boards, in: modelContext)
         }
     }
