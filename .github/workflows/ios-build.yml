@@ -1,6 +1,9 @@
 name: Build LocalPins IPA
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       bundle_id:
@@ -31,9 +34,14 @@ jobs:
       ARCHIVE_PATH: ${{ github.workspace }}/build/LocalPins.xcarchive
       EXPORT_PATH: ${{ github.workspace }}/build/export
       EXPORT_OPTIONS_PATH: ${{ github.workspace }}/build/ExportOptions.plist
-      BUNDLE_ID: ${{ inputs.bundle_id }}
-      TEAM_ID: ${{ inputs.team_id }}
-      EXPORT_METHOD: ${{ inputs.export_method }}
+      BUNDLE_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.bundle_id || 'com.localpins.app' }}
+      TEAM_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.team_id || '' }}
+      EXPORT_METHOD: ${{ github.event_name == 'workflow_dispatch' && inputs.export_method || 'development' }}
+      APPLE_CERTIFICATE_P12_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
+      APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+      APPLE_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_PROVISION_PROFILE_BASE64 }}
+      PROVISIONING_PROFILE_NAME: ${{ secrets.PROVISIONING_PROFILE_NAME }}
+      KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
     steps:
       - name: Checkout
@@ -50,13 +58,23 @@ jobs:
       - name: Prepare directories
         run: mkdir -p build
 
+      - name: Detect signing readiness
+        id: signing
+        shell: bash
+        run: |
+          if [[ -n "$APPLE_CERTIFICATE_P12_BASE64" && -n "$APPLE_CERTIFICATE_PASSWORD" && -n "$APPLE_PROVISION_PROFILE_BASE64" && -n "$TEAM_ID" ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install signing assets
-        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        if: ${{ steps.signing.outputs.ready == 'true' }}
         env:
-          CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
-          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_PROVISION_PROFILE_BASE64 }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          CERTIFICATE_BASE64: ${{ env.APPLE_CERTIFICATE_P12_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ env.APPLE_CERTIFICATE_PASSWORD }}
+          PROVISION_PROFILE_BASE64: ${{ env.APPLE_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ env.KEYCHAIN_PASSWORD }}
         run: |
           CERT_PATH="$RUNNER_TEMP/build_certificate.p12"
           PROFILE_PATH="$RUNNER_TEMP/build.mobileprovision"
@@ -84,10 +102,10 @@ jobs:
             /usr/libexec/PlistBuddy -c "Set :teamID $TEAM_ID" "$EXPORT_OPTIONS_PATH"
           fi
 
-          if [ -n "${{ secrets.PROVISIONING_PROFILE_NAME }}" ]; then
+          if [ -n "$PROVISIONING_PROFILE_NAME" ]; then
             /usr/libexec/PlistBuddy -c "Add :provisioningProfiles dict" "$EXPORT_OPTIONS_PATH" || true
-            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles:$BUNDLE_ID string ${{ secrets.PROVISIONING_PROFILE_NAME }}" "$EXPORT_OPTIONS_PATH" || \
-            /usr/libexec/PlistBuddy -c "Set :provisioningProfiles:$BUNDLE_ID ${{ secrets.PROVISIONING_PROFILE_NAME }}" "$EXPORT_OPTIONS_PATH"
+            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles:$BUNDLE_ID string $PROVISIONING_PROFILE_NAME" "$EXPORT_OPTIONS_PATH" || \
+            /usr/libexec/PlistBuddy -c "Set :provisioningProfiles:$BUNDLE_ID $PROVISIONING_PROFILE_NAME" "$EXPORT_OPTIONS_PATH"
           fi
 
           cat "$EXPORT_OPTIONS_PATH"
@@ -105,7 +123,7 @@ jobs:
             clean archive
 
       - name: Export IPA
-        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        if: ${{ steps.signing.outputs.ready == 'true' }}
         run: |
           xcodebuild -exportArchive \
             -archivePath "$ARCHIVE_PATH" \
@@ -120,7 +138,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload IPA artifact
-        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' && secrets.APPLE_PROVISION_PROFILE_BASE64 != '' && secrets.APPLE_CERTIFICATE_PASSWORD != '' && inputs.team_id != '' }}
+        if: ${{ steps.signing.outputs.ready == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: LocalPins-ipa
