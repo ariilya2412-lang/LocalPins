@@ -7,7 +7,7 @@ final class PinBoard: Identifiable {
     var name: String
     var createdAt: Date
     var updatedAt: Date
-    @Relationship(inverse: \PhotoPin.boards) var pins: [PhotoPin]
+    var pins: [PhotoPin]
 
     init(
         id: UUID = UUID(),

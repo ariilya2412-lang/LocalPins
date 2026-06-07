@@ -9,7 +9,7 @@ final class PhotoPin: Identifiable {
     var imageFileName: String
     var pixelWidth: Double
     var pixelHeight: Double
-    @Relationship(inverse: \PinBoard.pins) var boards: [PinBoard]
+    var boards: [PinBoard]
 
     init(
         id: UUID = UUID(),
