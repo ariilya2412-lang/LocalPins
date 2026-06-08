@@ -136,14 +136,6 @@ jobs:
             DEVELOPMENT_TEAM="$TEAM_ID" \
             clean archive
 
-      - name: Export IPA
-        if: ${{ github.event_name == 'workflow_dispatch' && steps.signing.outputs.ready == 'true' }}
-        run: |
-          xcodebuild -exportArchive \
-            -archivePath "$ARCHIVE_PATH" \
-            -exportPath "$EXPORT_PATH" \
-            -exportOptionsPlist "$EXPORT_OPTIONS_PATH"
-
       - name: Upload archive artifact
         if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
@@ -152,8 +144,24 @@ jobs:
           path: ${{ env.ARCHIVE_PATH }}
           if-no-files-found: error
 
+      - name: Export IPA
+        id: export_ipa
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        continue-on-error: true
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$ARCHIVE_PATH" \
+            -exportPath "$EXPORT_PATH" \
+            -exportOptionsPlist "$EXPORT_OPTIONS_PATH"
+
+      - name: List export directory
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "EXPORT_PATH=$EXPORT_PATH"
+          find "$EXPORT_PATH" -maxdepth 3 -type f || true
+
       - name: Upload IPA artifact
-        if: ${{ github.event_name == 'workflow_dispatch' && steps.signing.outputs.ready == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && steps.export_ipa.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: LocalPins-ipa
